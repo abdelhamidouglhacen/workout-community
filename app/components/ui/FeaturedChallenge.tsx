@@ -25,8 +25,9 @@ const FeaturedChallenge = () => {
     const fetchData = async () => {
       try {
         const res = await fetch("/api/homepage/FeaturedChallenge");
+        if (!res.ok) throw new Error(`request failed with ${res.status}`);
         const data = await res.json();
-        setChallenges(data);
+        setChallenges(Array.isArray(data) ? data : []);
       } catch (error) {
         console.error("error: ", error);
       }

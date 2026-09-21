@@ -7,6 +7,9 @@ import * as Sentry from "@sentry/nextjs";
 Sentry.init({
   dsn: "https://63571803e5a7a6a489c084b8d73e7918@o4512120695291904.ingest.us.sentry.io/4512122787594240",
 
+  // Only report errors from the production deployment (workout-community.vercel.app)
+  enabled: process.env.NEXT_PUBLIC_VERCEL_ENV === "production",
+
   // Add optional integrations for additional features
   integrations: [Sentry.replayIntegration()],
 
